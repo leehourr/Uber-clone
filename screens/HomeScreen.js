@@ -9,7 +9,7 @@ import { useDispatch } from "react-redux";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  console.log(navSlice);
+  // console.log(navSlice);
   return (
     <SafeAreaView className="bg-white h-full">
       <View className="p-5">
