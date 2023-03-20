@@ -1,12 +1,17 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectOrigin } from "../store/navSlice";
+import { selectDestination, selectOrigin } from "../store/navSlice";
 import MapView, { Marker } from "react-native-maps";
+import { GOOGLE_MAPS_APIKEY } from "@env";
+import MapViewDirections from "react-native-maps-directions";
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
-  console.log(origin.location);
+  const destination = useSelector(selectDestination);
+  console.log(origin.description);
+
+  console.log(destination.description);
   return (
     <MapView
       initialRegion={{
@@ -27,6 +32,15 @@ const Map = () => {
           title="Origin"
           description={origin.description}
           identifier="origin"
+        />
+      )}
+      {origin && destination && (
+        <MapViewDirections
+          origin={origin.description}
+          destination={destination.description}
+          apikey={GOOGLE_MAPS_APIKEY}
+          strokeWidth={3}
+          strokeColor="black"
         />
       )}
     </MapView>
