@@ -4,9 +4,12 @@ import NavOptions from "../components/NavOptions";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { store } from "../store/store";
-import { selectDestination, setOrigin } from "../store/navSlice";
+import navSlice, { selectDestination, setOrigin } from "../store/navSlice";
+import { useDispatch } from "react-redux";
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+  console.log(navSlice);
   return (
     <SafeAreaView className="bg-white h-full">
       <View className="p-5">
@@ -21,15 +24,15 @@ const HomeScreen = () => {
           debounce={400}
           query={{ key: GOOGLE_MAPS_APIKEY, language: "en" }}
           onPress={(data, details = null) => {
-            // console.log(details)
-            // console.log(data)
-            store.dispatch(
+            // console.log(details);
+            // console.log(data);
+            dispatch(
               setOrigin({
                 location: details.geometry.location,
                 description: data.description,
               })
             );
-            store.dispatch(selectDestination(null));
+            // dispatch(selectDestination(null));
           }}
           enablePoweredByContainer={false}
           fetchDetails={true}
