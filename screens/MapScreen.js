@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import Map from "../components/Map";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -10,10 +10,10 @@ const MapScreen = () => {
 
   return (
     <View>
-      <View className="h-[30%]">
+      <View className="h-[40%]">
         <Map />
       </View>
-      <View className="h-[70%]">
+      <View className="bg-white h-[60%] ">
         <Stack.Navigator>
           <Stack.Screen
             name="NavigateCard"

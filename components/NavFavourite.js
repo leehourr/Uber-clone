@@ -23,7 +23,7 @@ const NavFavourite = () => {
       data={data}
       keyExtractor={(item) => item.id}
       ItemSeparatorComponent={() => (
-        <View style={{ height: 0.5 }} className="bg-gray-200" />
+        <View style={{ height: 1 }} className="bg-gray-200" />
       )}
       renderItem={({ item: { location, destination, icon } }) => (
         <TouchableOpacity className="flex-row items-center p-5">
