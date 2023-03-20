@@ -5,36 +5,36 @@ const data = [
   {
     id: "123",
     title: "Get a ride",
-    image: "https://links. .papareact.com/3pn",
+    image: "https://links.papareact.com/3pn",
     screen: "MapScreen",
   },
   {
     id: "456",
     title: "Order food",
-    image: "https://links.papareact. com/28w",
+    image: "https://links.papareact.com/28w",
     screen: "EatsScreen",
   },
 ];
 
-const navOptions = () => {
+const NavOptions = () => {
   return (
     <FlatList
       data={data}
       horizontal
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => {
-        <TouchableOpacity className="p-2 pl-5 pb-8 pt-4  bg-gray-200">
+      renderItem={({ item }) => (
+        <TouchableOpacity className="p-2 pl-5 pb-8 pt-4 bg-gray-200 m-2 w-40">
           <View>
             <Image
-              style={{ width: 1200, height: 120, resizeMode: "contain" }}
+              style={{ width: 120, height: 120, resizeMode: "contain" }}
               source={{ uri: item.image }}
             />
-            <Text className="mt-2 text-lg font-semibold">{item.titq}</Text>
+            <Text className="mt-2 text-lg font-semibold">{item.title}</Text>
           </View>
-        </TouchableOpacity>;
-      }}
+        </TouchableOpacity>
+      )}
     />
   );
 };
 
-export default navOptions;
+export default NavOptions;
