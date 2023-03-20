@@ -3,6 +3,8 @@ import React from "react";
 import NavOptions from "../components/NavOptions";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
+import { store } from "../store/store";
+import { setDestination, setOrigin } from "../store/navSlice";
 
 const HomeScreen = () => {
   return (
@@ -17,6 +19,29 @@ const HomeScreen = () => {
           placeholder="Where from?"
           nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
+          query={{ key: GOOGLE_MAPS_APIKEY, language: "en" }}
+          onPress={(data, details = null) => {
+            // console.log(details)
+            // console.log(data)
+            store.dispatch(
+              setOrigin({
+                location: details.geometry.location,
+                description: data.description,
+              })
+            );
+            store.dispatch(setDestination(null));
+          }}
+          fetchDetails={true}
+          enablePoweredByContainer={false}
+          minLength={2}
+          styl11es={{
+            container: {
+              flex: 0,
+            },
+            textInput: {
+              fontSize: 18,
+            },
+          }}
         />
         <NavOptions />
       </View>
