@@ -6,6 +6,7 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 import { store } from "../store/store";
 import navSlice, { selectDestination, setOrigin } from "../store/navSlice";
 import { useDispatch } from "react-redux";
+import NavFavourite from "../components/NavFavourite";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -47,7 +48,9 @@ const HomeScreen = () => {
             },
           }}
         />
+
         <NavOptions />
+        <NavFavourite />
       </View>
     </SafeAreaView>
   );
