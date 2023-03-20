@@ -40,20 +40,6 @@ const RideOptionsCard = () => {
   const navigate = useNavigation();
   const [selected, setSelected] = useState(null);
   const travelTimeInfo = useSelector(selectTravelTimeIndo);
-  let cost = (multiplier) =>
-    new Intl.NumberFormat("kh-KH", {
-      style: "currency",
-      currency: "KHR",
-    }).format(
-      Math.ceil(
-        Math.trunc(
-          ((travelTimeInfo.duration.value / 60) * 500 +
-            (travelTimeInfo.distance.value / 1000) * 1000) *
-            rate *
-            multiplier
-        )
-      )
-    );
 
   return (
     <SafeAreaView className="bg-white flat-grow pb-3 h-full">
@@ -88,8 +74,21 @@ const RideOptionsCard = () => {
               <Text className="text-xl font-semibold">{title}</Text>
               <Text>{travelTimeInfo?.duration.text} Travel time</Text>
             </View>
-            {/* calculate travel cost */}
-            <Text className="text-xl">{cost(multiplier)}</Text>
+            <Text className="text-xl">
+              {new Intl.NumberFormat("kh-KH", {
+                style: "currency",
+                currency: "KHR",
+              }).format(
+                Math.ceil(
+                  Math.trunc(
+                    ((travelTimeInfo.duration.value / 60) * 500 +
+                      (travelTimeInfo.distance.value / 1000) * 1000) *
+                      rate *
+                      multiplier
+                  )
+                )
+              )}
+            </Text>
           </TouchableOpacity>
         )}
       />
