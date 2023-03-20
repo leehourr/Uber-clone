@@ -1,10 +1,15 @@
 import { View, Text } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-import { selectDestination, selectOrigin } from "../store/navSlice";
+import {
+  selectDestination,
+  selectOrigin,
+  setTravelTimeInFo,
+} from "../store/navSlice";
 import MapView, { Marker } from "react-native-maps";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import MapViewDirections from "react-native-maps-directions";
+import { store } from "../store/store";
 
 const Map = () => {
   const origin = useSelector(selectOrigin);
@@ -29,7 +34,8 @@ const Map = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          console.log("time travel", data);
+          // console.log("time travel", data);
+          store.dispatch(setTravelTimeInFo(data.rows[0].elements[0]));
         });
     };
     getTravelTime();
