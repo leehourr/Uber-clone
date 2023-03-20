@@ -32,7 +32,7 @@ export default function App() {
             style={{ flex: 1 }}
             className="flex-1 transition-all duration-100"
             behavior={Platform.OS === "ios" ? "padding" : "height"}
-            keyboardVerticalOffset={Platform.OS === "ios" ? -50 : 0}
+            keyboardVerticalOffset={Platform.OS === "ios" ? -52 : 0}
           >
             <Stack.Navigator>
               <Stack.Screen

@@ -17,10 +17,10 @@ import { Icon } from "@rneui/themed";
 const NavigateCard = () => {
   const navigation = useNavigation();
   return (
-    <ScrollView className="bg-white ">
+    <SafeAreaView className="bg-white h-full">
       <Text className="text-center py-5 text-xl">Good Morning, Lee Hour</Text>
       <View className="border-t flex-1 border-gray-200">
-        <View onT>
+        <View className="">
           <GooglePlacesAutocomplete
             placeholder="Where to?"
             styles={{
@@ -63,9 +63,9 @@ const NavigateCard = () => {
           onPress={() => {
             navigation.navigate("RideOptionsCard");
           }}
-          className="flex flex-row justify-between bg-black w-24 px-4 py-3 rounded-full"
+          className="flex flex-row justify-center bg-black w-24 px-4 py-3 rounded-full"
         >
-          <Icon name="car" type="font-awsome" color="white" size={16} />
+          {/* <Icon name="car" type="font-awsome" color="white" size={16} /> */}
           <Text className="text-white text-center">Rides</Text>
         </TouchableOpacity>
         <TouchableOpacity className="flex flex-row justify-between w-24 px-4 py-3 rounded-full">
@@ -78,7 +78,7 @@ const NavigateCard = () => {
           <Text className="text-center"> Eats</Text>
         </TouchableOpacity>
       </View>
-    </ScrollView>
+    </SafeAreaView>
   );
 };
 
