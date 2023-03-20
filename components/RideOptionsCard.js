@@ -11,6 +11,7 @@ import { Icon } from "@rneui/base";
 import { useNavigation } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 import { selectTravelTimeIndo } from "../store/navSlice";
+// import Intl from "intl";
 
 const data = [
   {
@@ -33,10 +34,13 @@ const data = [
   },
 ];
 
+const rate = 1.2;
+
 const RideOptionsCard = () => {
   const navigate = useNavigation();
   const [selected, setSelected] = useState(null);
   const travelTimeInfo = useSelector(selectTravelTimeIndo);
+
   return (
     <SafeAreaView className="bg-white flat-grow pb-3 h-full">
       <View>
@@ -68,9 +72,24 @@ const RideOptionsCard = () => {
             />
             <View className="ml-6">
               <Text className="text-xl font-semibold">{title}</Text>
-              <Text>Travel time...</Text>
+              <Text>{travelTimeInfo?.duration.text} Travel time</Text>
             </View>
-            <Text className="text-xl">$20</Text>
+            {/* calculate travel cost */}
+            <Text className="text-xl">
+              {new Intl.NumberFormat("kh-KH", {
+                style: "currency",
+                currency: "KHR",
+              }).format(
+                Math.ceil(
+                  Math.trunc(
+                    ((travelTimeInfo.duration.value / 60) * 500 +
+                      (travelTimeInfo.distance.value / 1000) * 1000) *
+                      rate *
+                      multiplier
+                  )
+                )
+              )}
+            </Text>
           </TouchableOpacity>
         )}
       />

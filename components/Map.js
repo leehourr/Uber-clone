@@ -34,7 +34,7 @@ const Map = () => {
       )
         .then((res) => res.json())
         .then((data) => {
-          // console.log("time travel", data);
+          console.log("time travel", data);
           store.dispatch(setTravelTimeInFo(data.rows[0].elements[0]));
         });
     };
