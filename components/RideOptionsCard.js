@@ -9,6 +9,8 @@ import {
 import React, { useState } from "react";
 import { Icon } from "@rneui/base";
 import { useNavigation } from "@react-navigation/native";
+import { useSelector } from "react-redux";
+import { selectTravelTimeIndo } from "../store/navSlice";
 
 const data = [
   {
@@ -34,7 +36,7 @@ const data = [
 const RideOptionsCard = () => {
   const navigate = useNavigation();
   const [selected, setSelected] = useState(null);
-
+  const travelTimeInfo = useSelector(selectTravelTimeIndo);
   return (
     <SafeAreaView className="bg-white flat-grow pb-3 h-full">
       <View>
@@ -46,7 +48,9 @@ const RideOptionsCard = () => {
         >
           <Icon name="chevron-left" type="fontawesome" />
         </TouchableOpacity>
-        <Text className="text-center py-5 text-xl">Select a Ride</Text>
+        <Text className="text-center py-5 text-xl">
+          Select a Ride - {travelTimeInfo?.distance.text}
+        </Text>
       </View>
       <FlatList
         data={data}
