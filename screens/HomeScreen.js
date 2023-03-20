@@ -4,7 +4,7 @@ import NavOptions from "../components/NavOptions";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { store } from "../store/store";
-import { setDestination, setOrigin } from "../store/navSlice";
+import { selectDestination, setOrigin } from "../store/navSlice";
 
 const HomeScreen = () => {
   return (
@@ -29,12 +29,13 @@ const HomeScreen = () => {
                 description: data.description,
               })
             );
-            store.dispatch(setDestination(null));
+            store.dispatch(selectDestination(null));
           }}
-          fetchDetails={true}
           enablePoweredByContainer={false}
+          fetchDetails={true}
+          returnKeyType="search"
           minLength={2}
-          styl11es={{
+          styles={{
             container: {
               flex: 0,
             },
